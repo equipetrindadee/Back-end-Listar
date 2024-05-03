@@ -146,11 +146,11 @@ export const Listar = () => {
                         ))}
                     </tbody>
                 </table>
-                {/* // <!-- page nation --> */}
+                {/* // <!-- pagenation --> */}
                 <nav aria-label="Page navigation example paginas">
                     <ul className="pagination  justify-content-center">
                        
-                        <li className="page-item"><a className="page-link" onClick={prePage} href="#">Prev</a></li>
+                        <li className="page-item"><a className="page-link" onClick={prePage} href="#" disabled={currentPage === 1 }>Prev</a></li>
                         {
                             numbers.map((n,i) =>{
                                 <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}>
@@ -158,7 +158,7 @@ export const Listar = () => {
                                 </li>
                             })
                         }
-                         <li className="page-item"><a className="page-link"onClick={nextPage} href="#">next</a></li>
+                         <li className="page-item"><a className="page-link"onClick={nextPage} href="#" disabled={currentPage === npage}>next</a></li>
                        
                     </ul>
                 </nav>
@@ -167,17 +167,18 @@ export const Listar = () => {
 
     )
     function prePage() {
-if (currentPage !== firstIndex) {
-    setCurrentPage(currentPage - 1)
-}
-                
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
     }
+
     function changeCPage(id) {
-                setCurrentPage(id)
+        setCurrentPage(id);
     }
+
     function nextPage() {
-        if (currentPage !== lastIndex) {
-            setCurrentPage(currentPage + 1)
+        if (currentPage < npage) {
+            setCurrentPage(currentPage + 1);
         }
     }
 }
